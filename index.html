@@ -426,6 +426,11 @@ footer.site a:hover{color:var(--gold-2)}
 .arch.logo::after{display:none}
 .hero-art:has(.arch.logo)::before{inset:-18px;border-radius:50%}
 .hero-art:has(.arch.logo) .mini,.hero-art:has(.arch.logo) .chip{display:none}
+
+/* Moldura que mostra a foto inteira (sem cortar) */
+.panel .ph.car.fit{aspect-ratio:9/16;height:min(620px,78vh);width:auto;max-width:100%;max-height:none;justify-self:center;border-radius:var(--radius)}
+.panel .ph.car.fit::after{display:none}
+.panel .ph.car.fit .car-track img{object-fit:contain}
 </style>
 </head>
 <body>
@@ -512,7 +517,7 @@ footer.site a:hover{color:var(--gold-2)}
       <button class="tab" data-t="facial" role="tab">Sobrancelhas & Facial</button>
       <button class="tab" data-t="nails" role="tab">Esmalteria</button>
       <button class="tab" data-t="massa" role="tab">Massoterapia</button>
-      <button class="tab" data-t="corpo" role="tab">Estética & Técnicas</button>
+      <button class="tab" data-t="corpo" role="tab">Estética Avançada</button>
       <button class="tab" data-t="depil" role="tab">Depilação</button>
       <button class="tab" data-t="make" role="tab">Make</button>
       <button class="tab" data-t="drena" role="tab">Drenagem Linfática</button>
@@ -555,7 +560,7 @@ footer.site a:hover{color:var(--gold-2)}
     </div>
     <div class="panel" id="p-nails">
       <div class="ph car" id="car-nails" data-fotos="img/unha_1.jpeg,img/unha_2.jpeg,img/unha_3.jpeg,img/unha_4.jpeg,img/unha_5.jpeg,img/unha_6.jpeg,img/unha_7.jpeg,img/unha_8.jpeg,img/unha_9.jpeg,img/unha_10.jpeg,img/unha_11.jpeg,img/unha_12.jpeg,img/unha_13.jpeg,img/unha_14.jpeg,img/unha_15.jpeg,img/unha_16.jpeg,img/unha_17.jpeg,img/unha_18.jpeg,img/unha_19.jpeg,img/unha_20.jpeg">
-        <div class="car-track"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TRAIE2pAxLU_5gvKGwSkUXhmImowPxUUOuEVOXFxPPSylIiMdK9Tb1Hsl0mY7GEZfpZgSGAE4O_Eb8GDBYXSHqJ_zRPjaM4va8B69j9ICQmsA-2jXDLMw7fBQ3wj6tnBrwCqbCLXSAEw1x=w900" alt="Unhas decoradas feitas na esmalteria" loading="lazy"></div>
+        <div class="car-track"></div>
         <div class="car-dots" aria-hidden="true"></div>
       </div>
       <div>
@@ -577,12 +582,15 @@ footer.site a:hover{color:var(--gold-2)}
       </div>
     </div>
     <div class="panel" id="p-corpo">
-      <div class="ph"><img src="img/tecnicas.jpeg" alt="Sala de procedimentos estéticos" loading="lazy"></div>
+      <div class="ph car" id="car-corpo" data-alt="Estética avançada na Intense" data-fotos="img/estetica_1.jpeg,img/estetica_2.jpeg,img/estetica_3.jpeg,img/estetica_4.jpeg,img/estetica_5.jpeg,img/estetica_6.jpeg,img/estetica_7.jpeg,img/estetica_8.jpeg,img/estetica_9.jpeg,img/estetica_10.jpeg,img/estetica_11.jpeg,img/estetica_12.jpeg,img/estetica_13.jpeg,img/estetica_14.jpeg,img/estetica_15.jpeg,img/estetica_16.jpeg,img/estetica_17.jpeg,img/estetica_18.jpeg,img/estetica_19.jpeg,img/estetica_20.jpeg">
+        <div class="car-track"><img src="img/tecnicas.jpeg" alt="Sala de procedimentos estéticos" loading="lazy"></div>
+        <div class="car-dots" aria-hidden="true"></div>
+      </div>
       <div>
-        <h3><em>Técnicas</em> avançadas</h3>
+        <h3><em>Estética</em> avançada</h3>
         <p>Procedimentos de estética corporal e micropigmentação paramédica, feitos com segurança e atenção a cada detalhe.</p>
         <ul class="list"><li>Reconstrução de aréolas</li><li>Nanopigmentação de estrias</li><li>Cobertura de cicatriz</li><li>Harmonização de umbigo</li><li>Pós-abdominoplastia</li><li>Drenagem & modeladora</li></ul>
-        <a class="btn btn-gold" data-wa="Olá! Gostaria de saber mais sobre as técnicas avançadas da Intense." href="https://wa.me/5568996109708" target="_blank" rel="noopener">Tirar dúvidas</a>
+        <a class="btn btn-gold" data-wa="Olá! Gostaria de saber mais sobre a estética avançada da Intense." href="https://wa.me/5568996109708" target="_blank" rel="noopener">Tirar dúvidas</a>
         <button class="btn btn-line" data-lb="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9RHJCVhJKPLAAyhHMYezj2aAikt1uXhdp0Ivsw3WVWOq5zyGJTd99WtI4qhVL180G6YynCGb0pwLmiNjWcypbMjY5o9fIwObwaQ7vo3Rsfq-UM1DzjfIUJMYbtcCxURO1f3RtYdheuFJjJR=w1400">Ver cardápio</button>
       </div>
     </div>
@@ -608,7 +616,7 @@ footer.site a:hover{color:var(--gold-2)}
       </div>
     </div>
     <div class="panel" id="p-drena">
-      <div class="ph car" style="background:linear-gradient(160deg,#30251d,#16110d)" id="car-drena" data-alt="Drenagem linfática na Intense" data-fotos="img/drenagem_1.jpeg,img/drenagem_2.jpeg,img/drenagem_3.jpeg,img/drenagem_4.jpeg,img/drenagem_5.jpeg,img/drenagem_6.jpeg,img/drenagem_7.jpeg,img/drenagem_8.jpeg,img/drenagem_9.jpeg,img/drenagem_10.jpeg,img/drenagem_11.jpeg,img/drenagem_12.jpeg,img/drenagem_13.jpeg,img/drenagem_14.jpeg,img/drenagem_15.jpeg,img/drenagem_16.jpeg,img/drenagem_17.jpeg,img/drenagem_18.jpeg,img/drenagem_19.jpeg,img/drenagem_20.jpeg">
+      <div class="ph car fit" style="background:linear-gradient(160deg,#30251d,#16110d)" id="car-drena" data-alt="Drenagem linfática na Intense" data-fotos="img/drenagem_1.jpeg,img/drenagem_2.jpeg,img/drenagem_3.jpeg,img/drenagem_4.jpeg,img/drenagem_5.jpeg,img/drenagem_6.jpeg,img/drenagem_7.jpeg,img/drenagem_8.jpeg,img/drenagem_9.jpeg,img/drenagem_10.jpeg,img/drenagem_11.jpeg,img/drenagem_12.jpeg,img/drenagem_13.jpeg,img/drenagem_14.jpeg,img/drenagem_15.jpeg,img/drenagem_16.jpeg,img/drenagem_17.jpeg,img/drenagem_18.jpeg,img/drenagem_19.jpeg,img/drenagem_20.jpeg">
         <div class="car-track"></div>
         <div class="car-dots" aria-hidden="true"></div>
       </div>

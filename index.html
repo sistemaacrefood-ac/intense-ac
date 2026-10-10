@@ -419,6 +419,13 @@ footer.site a:hover{color:var(--gold-2)}
 .car-dots{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;gap:7px;z-index:2;pointer-events:none}
 .car-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45);transition:all .3s}
 .car-dots i.on{background:var(--gold);width:18px;border-radius:999px}
+
+/* Logo no topo (no lugar da foto da fachada) */
+.arch.logo{aspect-ratio:1/1;border-radius:50%;overflow:visible;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 70px -10px rgba(228,190,90,.45)}
+.arch.logo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;transform:none;animation:none;border-radius:50%}
+.arch.logo::after{display:none}
+.hero-art:has(.arch.logo)::before{inset:-18px;border-radius:50%}
+.hero-art:has(.arch.logo) .mini,.hero-art:has(.arch.logo) .chip{display:none}
 </style>
 </head>
 <body>
@@ -452,7 +459,7 @@ footer.site a:hover{color:var(--gold-2)}
       </div>
     </div>
     <div class="hero-art rv d2">
-      <figure class="arch"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlU-A-LXoLuXPTIB8o90HK--ocswtQu2QfqcgyvbO2GlsRdr0urhuCRpVVjxJkCByc3inN0w1dq4B8tKZ3kBXAZoVb2-CmwbKCEccK0Jg4XWmuCfE7eIebHde_YyH8s6Xf4L6r-JIxga0gB=w1400" alt="Fachada iluminada da Intense Estética & Beleza" fetchpriority="high"></figure>
+      <figure class="arch logo"><img src="img/logo.png" alt="Logo da Intense Estética e Beleza" width="1020" height="1020" fetchpriority="high"></figure>
       <figure class="mini"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmLGdPhwExjul3KcOJh4isbb-EiC31eR8OAl9e-chTjztKGDQwZt5JsOuHXrdHQ3GoTWSMkNXjh0g-iMfnK7nvzDQjGJEEEx1RnOPwdnz_-GziRGqxHbkSyEboJDYfh9fSMmBwy=w600" alt="Sala de espera em mármore"></figure>
       <div class="chip"><span class="stars">★★★★★</span><b>“Tratamento VIP”</b><small>Clientes no Google</small></div>
     </div>

@@ -410,6 +410,15 @@ footer.site a:hover{color:var(--gold-2)}
   .reel-dots i.on{width:22px;border-radius:99px;background:var(--gold)}
   .reel-hint{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 }
+
+/* Carrossel de fotos (arrastar para o lado) */
+.panel .ph.car .car-track{display:flex;width:100%;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab}
+.panel .ph.car .car-track::-webkit-scrollbar{display:none}
+.panel .ph.car .car-track.drag{cursor:grabbing;scroll-snap-type:none}
+.panel .ph.car .car-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;scroll-snap-stop:always;user-select:none;-webkit-user-drag:none}
+.car-dots{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;gap:7px;z-index:2;pointer-events:none}
+.car-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45);transition:all .3s}
+.car-dots i.on{background:var(--gold);width:18px;border-radius:999px}
 </style>
 </head>
 <body>
@@ -531,7 +540,10 @@ footer.site a:hover{color:var(--gold-2)}
       </div>
     </div>
     <div class="panel" id="p-nails">
-      <div class="ph"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TRAIE2pAxLU_5gvKGwSkUXhmImowPxUUOuEVOXFxPPSylIiMdK9Tb1Hsl0mY7GEZfpZgSGAE4O_Eb8GDBYXSHqJ_zRPjaM4va8B69j9ICQmsA-2jXDLMw7fBQ3wj6tnBrwCqbCLXSAEw1x=w900" alt="Unhas decoradas feitas na esmalteria" loading="lazy"></div>
+      <div class="ph car" id="car-nails" data-fotos="img/unha_1.jpeg,img/unha_2.jpeg,img/unha_3.jpeg,img/unha_4.jpeg,img/unha_5.jpeg,img/unha_6.jpeg,img/unha_7.jpeg,img/unha_8.jpeg,img/unha_9.jpeg,img/unha_10.jpeg">
+        <div class="car-track"><img src="https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TRAIE2pAxLU_5gvKGwSkUXhmImowPxUUOuEVOXFxPPSylIiMdK9Tb1Hsl0mY7GEZfpZgSGAE4O_Eb8GDBYXSHqJ_zRPjaM4va8B69j9ICQmsA-2jXDLMw7fBQ3wj6tnBrwCqbCLXSAEw1x=w900" alt="Unhas decoradas feitas na esmalteria" loading="lazy"></div>
+        <div class="car-dots" aria-hidden="true"></div>
+      </div>
       <div>
         <h3><em>Esmalteria</em></h3>
         <p>Mãos e pés impecáveis, com alongamentos duráveis e acabamento de alto padrão.</p>
@@ -785,6 +797,37 @@ footer.site a:hover{color:var(--gold-2)}
     t.classList.add('on');var pn=document.getElementById(pid);pn.classList.add('on',cls);
     return true;
   }
+  // Carrossel de fotos: só troca quando a pessoa arrasta para o lado
+  document.querySelectorAll('.ph.car').forEach(function(car){
+    var track=car.querySelector('.car-track'),dots=car.querySelector('.car-dots');
+    var lista=(car.dataset.fotos||'').split(',').map(function(x){return x.trim()}).filter(Boolean);
+    var ok=[],pend=lista.length;
+    function dotsUpd(){
+      var n=track.children.length,a=Math.round(track.scrollLeft/(track.clientWidth||1));
+      [].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===a)});
+      dots.style.display=n>1?'flex':'none';
+    }
+    function monta(){
+      ok.forEach(function(src){if(!src)return;var im=document.createElement('img');im.src=src;im.alt='Unhas feitas na esmalteria da Intense';im.draggable=false;track.appendChild(im)});
+      dots.innerHTML='';for(var i=0;i<track.children.length;i++)dots.appendChild(document.createElement('i'));
+      dotsUpd();
+    }
+    if(!pend)monta();
+    // só entram as fotos que realmente existem na pasta img
+    lista.forEach(function(src,i){var t=new Image();
+      t.onload=function(){ok[i]=src;if(!--pend)monta()};
+      t.onerror=function(){ok[i]=null;if(!--pend)monta()};
+      t.src=src});
+    track.addEventListener('scroll',dotsUpd,{passive:true});
+    // arrastar com o mouse (no celular o toque já funciona sozinho)
+    var down=false,sx=0,sl=0;
+    track.addEventListener('mousedown',function(e){down=true;sx=e.pageX;sl=track.scrollLeft;track.classList.add('drag');e.preventDefault()});
+    window.addEventListener('mousemove',function(e){if(down)track.scrollLeft=sl-(e.pageX-sx)});
+    window.addEventListener('mouseup',function(e){if(!down)return;down=false;
+      var w=track.clientWidth,d=track.scrollLeft-sl,idx=Math.round(sl/w)+(Math.abs(d)>w*.15?(d>0?1:-1):0);
+      idx=Math.max(0,Math.min(track.children.length-1,idx));
+      track.classList.remove('drag');track.scrollTo({left:idx*w,behavior:'smooth'})});
+  });
   // Tabs
   var tabsEl=document.querySelector('.tabs');
   function centerTab(t,smooth){
